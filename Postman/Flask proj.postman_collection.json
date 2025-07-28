@@ -1,0 +1,42 @@
+{
+	"info": {
+		"_postman_id": "61a611c1-f4c5-4576-9fc0-90192828a6b4",
+		"name": "Flask proj",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34495549"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:5000/api/greet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"eunsu\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/greet",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"greet"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
