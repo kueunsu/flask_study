@@ -22,6 +22,24 @@ def api_greet():
     message = f'안녕하세요!! {name}님~~'
     return jsonify({'message':message})
 
+@app.route('/api/user',methods=['GET'])
+def get_user_info():
+    username = request.args.get('name')
+    if username:   
+        return jsonify({'message' : f'User is {username}'})
+    else:
+        return jsonify({'error':'No name providedr'}),400
+    
+@app.route('/api/add', methods=['GET'])
+def add_func():
+    a = request.args.get('a')
+    b = request.args.get('b')
+    try:
+        result = int(a) + int(b)
+    except(ValueError, TypeError):
+        return jsonify({'error' : '숫자를 보내주세요'}),400
+    return jsonify({'result' : result})
+
 if __name__ == '__main__':
     app.run(debug=True)
 

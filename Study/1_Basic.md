@@ -23,8 +23,6 @@
             
             결과 : 브라우저에 내가 원하는 문구를 띄울 수 있음
             
-            ![image.png](attachment:9e671443-30be-4527-9a1b-59c8a6403c66:image.png)
-            
             - 127.0.0.1 : 내 컴퓨터의 IP를 나타냄 → 로컬 서버
             - :5000 → 포트번호(flask의 default 포트 번호)
     - flask
@@ -37,7 +35,9 @@
         ```python
         from flask import ...
         
-        app = Flask(__name__) -> app이 서버의 이름이 됨
+        app = Flask(__name__) 
+        # app이 서버의 이름이 됨
+        # __name__은 거의 대부분 고정으로 써준다
         
         @app.route('/경로')
         def 함수명():
@@ -72,3 +72,6 @@
         ```
         
         결과 : / 뒤에 입력하는 값에 따라 추가적인 페이지 구성
+        - 가장 메인 경로 : 'Hello, 슈의 Flask 서버!'
+        - /hello 경로 : '안녕 슈! 여긴 /hello 엔드포인트야.'
+        - /api/data : 딕셔너리 형태의 data를 JSON 형태의 자료형식으로 바꾸어 화면에 띄움
