@@ -99,11 +99,16 @@
         return jsonify({"error" : "일치하는 ID가 존재하지 않습니다"}),404
     ```
     
+    - 경로 파라미터로 수정하고 싶은 책의  id를 받음
+    - 수정하고 싶은 내용을 JSON으로 받고 title, author에 관한 정보를 `data.get`으로 뽑아냄
+    - id에 해당하는 책을 찾아 내용으 수정
     </aside>
     
     **DELETE - delete**
     
     <aside>
+    
+    삭제하고 싶은 책의 id를 입력해 삭제하는 구문
     
     ```python
     @app.route('/books/<int:book_id>',methods=['DELETE'])
@@ -116,4 +121,30 @@
         return jsonify({"error" : f"{book_id}번 책을 찾을 수 없습니다"}),404
     ```
     
+    - 삭제만 하는 구문이므로 입력받는 값은 없음
+    - delete와 유사함 → id를 비교해 해당 id의 책을 제거
     </aside>
+    
+    **CURL**
+    
+    - 로컬 서버나 postman 없이도 결과를 테스트해볼 수 있는 방법
+    - 기본 구성 : `curl -X [method] [URL]`
+        - GET 요청은 기본값이라 -X GET을 생략가능함
+        - 터미널에 `curl http://localhost:5000/books` 과 같이 적어주면 JSON 형식의 결과가 출력됨
+        - 다른 method는 `curl -X POST http://localhost:5000/books` 과 같이 써주어야 함
+        - 뒤에 `|jq` 를 붙이면 알아보기 쉬운 문자열로 확인가능함
+        
+        | 옵션 | 설명 |
+        | --- | --- |
+        | `-X` | 메서드 지정 (GET, POST, PUT, DELETE 등) |
+        | `-H` | 헤더 설정 (예: `Content-Type`) |
+        | `-d` | 전송할 데이터 (JSON 문자열 등) |
+        | `-i` | 응답 헤더도 같이 보기 |
+        | `-v` | verbose 모드 (요청/응답 전체 보기) |
+    - POST와 PUT과 같은 method는 데이터도 함께 전송해야 함
+        - `-d '{"title":"은수의 자서전", "author":"은수"}’`과 같이 추가적인 데이터도 함께 적어줘야 함
+        - 작은 따옴표로 JSON 전체를 감싸고 내부는 큰 따옴표로 키와 값을 감싸는 것이 규칙
+    - 헤더는 ‘이 요청이 어떤 형식의 데이터인지’ 서버에게 알려주는 역할을 함
+        - `-H "Content-Type: application/json”` 과 같은 형식으로 전송됨
+        - 이는 보내는 데이터가 JSON 형식이라는 의미임
+        - REST API에서는 거의 항상 이렇게 써줌
